@@ -4,30 +4,54 @@ using UnityEngine;
 
 using UnityEngine.UI;
 using System.IO;
+using System.Runtime.CompilerServices;
 using ArduinoConnect;
-//using Random = UnityEngine.Random;
 
 public class Charty : MonoBehaviour
 {  
     private Queue myQueuea = new Queue();
     private Queue myQueuex = new Queue();
     private Queue myQueuey = new Queue();
-    public int hertz = 50;
+    //public int hertz = 50;
     public float voltage;
-    public GameObject thing;  
+    //public GameObject thing;
+    public Texture2D farbe;
     public Texture2D texture;
     int x = 0;
     int zz = 0;
+    
+    bool copy = false;
+    
     void Start()
     {
-        Debug.Log(texture.height);
-        
+      
+        IsCopy();
         
     }
 
+    void IsCopy()
+    {
+        if (copy == false)
+        {
+            texture = new Texture2D(farbe.width,farbe.height,TextureFormat.ARGB32,false);
+            for (int i = 0; i < farbe.width; i++)
+            {
+                for (int j = 0; j < farbe.height; j++)
+                {
+                  Color colorcopy=  farbe.GetPixel(i, j);
+                  texture.SetPixel(i,j,colorcopy);
+                }
+            }
+            
+            texture.Apply();
+            
+        }
+        
+        copy = true;
+
+    }
     void Update()
     {
-        
         int y = texture.height;
         //get Voltage
         //Voltage = Arduino[0];
