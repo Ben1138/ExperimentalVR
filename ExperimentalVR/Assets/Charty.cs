@@ -15,7 +15,7 @@ public class Charty : MonoBehaviour
     //public int hertz = 50;
     public float voltage;
     //public GameObject thing;
-    public Texture2D farbe;
+    //public Texture2D farbe;
     public Texture2D texture;
     int x = 0;
     int zz = 0;
@@ -25,11 +25,11 @@ public class Charty : MonoBehaviour
     void Start()
     {
       
-        IsCopy();
+       // IsCopy();
         
     }
 
-    void IsCopy()
+  /* void IsCopy()
     {
         if (copy == false)
         {
@@ -49,13 +49,14 @@ public class Charty : MonoBehaviour
         
         copy = true;
 
-    }
+    }*/
     void Update()
     {
         int y = texture.height;
         //get Voltage
         //Voltage = Arduino[0];
-        voltage = Random.Range(-1f,1f);
+        //voltage = Random.Range(-1f,1f);
+        voltage = 0.5f;
         //get time
         
         
@@ -67,7 +68,7 @@ public class Charty : MonoBehaviour
         myQueuea.Enqueue(a);
         myQueuex.Enqueue(x);
         myQueuey.Enqueue(y);
-        //Debug.Log("still running "+ x +" "+  y);
+        Debug.Log("still running "+ x +" "+  y);
         //change it to black SetPixel
         
         texture.SetPixel(x,y,Color.black);
@@ -90,5 +91,6 @@ public class Charty : MonoBehaviour
             texture.SetPixel(x1,y1,a1);
         }
         texture.Apply();
+        //thing.GetComponent<RawImage>().texture = Texture2D.Create(texture,new Rect(0,0,farbe.width,y),new Vector2(0.5f,0.5f) );
     }
 }
